@@ -10,11 +10,13 @@ pipeline {
         }
 
         stage('Build') {
-            steps {
-                // Build the Maven project
-                bat 'mvn clean install'
-            }
+    steps {
+        withMaven(maven: 'MAVEN_HOME') {
+            bat 'mvn clean install'
         }
+    }
+}
+
 
         stage('Test') {
             steps {
