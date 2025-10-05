@@ -1,7 +1,5 @@
 pipeline {
     agent any
-
-    // Use the tool names exactly as configured in Jenkins Global Tool Configuration
     tools {
         jdk 'java17'
         maven 'maven'
@@ -11,14 +9,14 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building the project...'
-                sh 'mvn -B clean package'
+                bat 'mvn -B clean package'
             }
         }
 
         stage('Unit Tests') {
             steps {
                 echo 'Running unit tests...'
-                sh 'mvn test'
+                bat 'mvn test'
             }
             post {
                 always {
@@ -44,5 +42,3 @@ pipeline {
         }
     }
 }
-
-
